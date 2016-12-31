@@ -8,7 +8,7 @@
     <title>Starter Node and Angular</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
 
     <!-- JS -->
@@ -18,23 +18,26 @@
     <!-- ANGULAR CUSTOM -->
     <script src="js/controllers/MainCtrl.js"></script>
     <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/services/WordyService.js"></script>
     <script src="js/services/NerdService.js"></script>
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
 </head>
 <body ng-app="sampleApp" ng-controller="NerdController">
-<div width=window.screenWidth>
+<div class="container">
 
     <!-- HEADER -->
+	<!-- I Don't actually want these
     <nav class="navbar navbar-inverse">
 
-        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE --
         <ul class="nav navbar-nav">
 			<li><a href="/">Stencil: Node and Angular</a></li>
             <li><a href="/nerds">Nerds</a></li>
         </ul>
     </nav>
-
+	-->
+	
     <!-- ANGULAR DYNAMIC CONTENT -->
     <div ng-view></div>
 

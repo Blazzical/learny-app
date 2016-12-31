@@ -2,22 +2,31 @@
 
 // modules
 var express			= require('express');
+console.log('Express');
 var app 			= express();
+console.log('Express app');
 var bodyParser 		= require('body-parser');
+console.log('Body parser');
 var methodOverride 	= require('method-override');
+console.log('Method override');
 var mongoose		= require('mongoose');
+console.log('Mongoose');
 var Wordy			= require('./app/models/wordy');
+console.log('Wordy');
 
 
 // config files
 var db = require('./config/db');
+console.log('Database');
 
 // set our port
 var port = process.env.PORT || 8080;
+console.log('Port: ' + port);
 
 
 // connect to our mongoDB database
  mongoose.connect(db.url);
+console.log('Mongoose Connect');
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -32,13 +41,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. Simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-// set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public'));
+// set the static files location /www/img will be /img for users
+app.use(express.static(__dirname + '/www'));
 
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
+console.log('Router created');
 
+/*
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
@@ -48,8 +59,10 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'hooray! welcome to our api!' });
+	next();
 });
+*/
 
 // more routes for our API will happen here
 // on routes that end in /wordys
@@ -69,7 +82,7 @@ router.route('/wordys')
             if (err)
                 res.send(err);
 
-            res.json({ message: 'Wordy created!' });
+            //res.json({ message: 'Wordy created!' });
 			console.log(wordy.actualword + ' | ' + wordy.submittedword + ' | ' + wordy.timetaken);
         });
         
@@ -89,7 +102,7 @@ router.route('/wordys')
 // ----------------------------------------------------
 router.route('/wordys/:wordy_id')
 
-    // get the bear with that id (accessed at GET http://localhost:8080/api/wordys/:wordy_id)
+    // get the wordy with that id (accessed at GET http://localhost:8080/api/wordys/:wordy_id)
     .get(function(req, res) {
         Wordy.findById(req.params.wordy_id, function(err, wordy) {
             if (err)

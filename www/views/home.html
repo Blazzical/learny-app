@@ -1,0 +1,26 @@
+<!-- public/views/home.html -->
+
+<a ng-click="goToNerdsNowPlease()" ng-show="beforeMenu">
+	<video id="videoIntro" width="100%" preload="auto" autoplay="autoplay" onended='goToNerds()'>
+		<source src="video/intro.mp4" type="video/mp4" />
+	</video>
+</a>
+
+<div ng-show="inMenu">
+	<div class="row" style="text-align: center; font-weight: bold; font-size: 3em;">
+		Top 250 English
+	</div>
+	<div class="row" style="text-align: center; font-weight: bold; font-size: 3em;">
+		Words
+	</div>
+	<div class="row" style="height: 4.5em;">
+	</div>
+	<div class="row" style="text-align: center; font-weight: bold; font-size: 2.5em;">
+		<a href="/nerds">BEGIN</a>
+	</div>
+	<div class="row" style="height: 4.5em;">
+	</div>
+	<div class="row" style="text-align: center; font-weight: bold; font-size: 2em;">
+		<span ng-click="showVideo()"><a>REPLAY VIDEO</a></span>
+	</div>
+</div>
